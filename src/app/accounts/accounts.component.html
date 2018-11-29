@@ -1,0 +1,5 @@
+<ul class="heroes">
+  <li *ngFor="let a of accounts" [class.selected]="hero === selectedAccount" (click)=onSelect(a)>
+    <span class="badge">{{ a.id }}</span>{{a.name}}</li>
+</ul>
+<app-account-details [account]="selectedAccount"></app-account-details>
