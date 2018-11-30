@@ -14,6 +14,7 @@ import { MessageService } from './messages/message.service';
 import { ContactsModule } from './contacts/contacts.module';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
 	declarations: [
@@ -30,7 +31,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 		ContactsModule,
 		OverlayModule,
 		MatSnackBarModule,
-		BrowserAnimationsModule
+		BrowserAnimationsModule,
+		HttpClientModule
 	],
 	providers: [
 		MessageService,

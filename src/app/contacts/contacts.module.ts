@@ -9,7 +9,7 @@ import { MatTableModule } from '@angular/material';
 	],
 	imports: [
 		CommonModule,
-		MatTableModule,
+		MatTableModule
 	],
 	exports: [ContactsComponent]
 })

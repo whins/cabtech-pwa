@@ -1,35 +1,44 @@
-import { Component, OnInit } from '@angular/core';
-import { Contact } from './contact';
-import { ContactsService } from './contacts.service';
-import { MessageService } from '../messages/message.service';
-import { MatSnackBar } from '@angular/material';
-
+import { Component, OnInit } from "@angular/core";
+import { Contact } from "./contact";
+import { ContactsService } from "./contacts.service";
+import { MessageService } from "../messages/message.service";
+import { MatSnackBar } from "@angular/material";
 
 @Component({
-	selector: 'app-contacts',
-	templateUrl: './contacts.component.html',
-	styleUrls: ['./contacts.component.scss'],
+	selector: "app-contacts",
+	templateUrl: "./contacts.component.html",
+	styleUrls: ["./contacts.component.scss"],
 	providers: [ContactsService]
 })
 export class ContactsComponent implements OnInit {
 	contacts: Contact[] = [];
 	selectedContact: Contact;
-	displayedColumns: string[] = ['id', 'name'];
+	displayedColumns: string[] = ["id", "name"];
 
-	constructor(private contactsService: ContactsService, public messageService: MessageService, public snackBar: MatSnackBar) { }
+	constructor(
+		private contactsService: ContactsService,
+		public messageService: MessageService,
+		private snackBar: MatSnackBar
+	) {}
 
 	ngOnInit() {
 		this.getContacts();
 	}
 
 	getContacts(): void {
-		this.contactsService.getContacts().subscribe(a => this.contacts = a);
+		this.contactsService.getContacts().subscribe(a => {
+			this.snackBar.open(`Contacts are loaded`, "OK");
+			this.contacts = a;
+		});
 	}
 
 	onSelect(selectedContact: Contact): void {
-		const snackBarRef = this.snackBar.open(`Undo selecting: ${selectedContact.name}?`, 'OK');
+		const snackBarRef = this.snackBar.open(
+			`Undo selecting: ${selectedContact.name}?`,
+			"OK"
+		);
 
-		snackBarRef.afterDismissed().subscribe((e) => {
+		snackBarRef.afterDismissed().subscribe(e => {
 			if (!!e.dismissedByAction) {
 				return;
 			}
@@ -37,8 +46,6 @@ export class ContactsComponent implements OnInit {
 			this.messageService.add(`Selected: ${selectedContact.name}`);
 		});
 
-		snackBarRef.onAction().subscribe(() => {
-
-		});
+		snackBarRef.onAction().subscribe(() => {});
 	}
 }
