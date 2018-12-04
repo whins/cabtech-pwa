@@ -1,0 +1,10 @@
+<div>
+	<div>
+		<span>{{ nodeItem.name }}</span>
+	</div>
+	<ul>
+		<li *ngFor="let n of nodeItem.items">
+			<app-node-item [nodeItem]="n"></app-node-item>
+		</li>
+	</ul>
+</div>

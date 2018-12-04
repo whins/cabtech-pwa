@@ -15,11 +15,15 @@ import { ContactsModule } from './contacts/contacts.module';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
+import { NodeItemsListComponent } from './node-items-list/node-items-list.component';
+import { NodeItemComponent } from './node-item/node-item.component';
 
 @NgModule({
 	declarations: [
 		AppComponent,
 		MessagesComponent,
+		NodeItemsListComponent,
+		NodeItemComponent,
 	],
 	imports: [
 		BrowserModule,
