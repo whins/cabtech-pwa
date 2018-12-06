@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { NodeItemModel } from "../node-item/node-item-model";
 import { trigger, state, style, transition, animate } from "@angular/animations";
 
@@ -46,8 +46,13 @@ import { trigger, state, style, transition, animate } from "@angular/animations"
 	  ],
 })
 export class NodeItemsListComponent implements OnInit {
-	isOpen = true;
+	isSelectAll: boolean = false;
+	isOpen = false;
 	items: NodeItemModel[] = [];
+
+	@Input() dataSource: NodeItemModel[] = [];
+
+	@Input() onSelectedAll: () => {};
 
 	constructor() {}
 
@@ -82,8 +87,12 @@ export class NodeItemsListComponent implements OnInit {
 		];
 	}
 
-
 	toggle() {
 	  this.isOpen = !this.isOpen;
+	}
+
+	onToggleSelectAll(val: boolean){
+		this.isSelectAll = !this.isSelectAll;
+		this.items.forEach(i=>i.check(this.isSelectAll));
 	}
 }

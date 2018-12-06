@@ -1,23 +1,15 @@
-<div style="position: relative; display: inline-block;">
-	<div class="btn-text" (click)="toggle()"><span>Manage dss columns</span></div>
-	<div
-		class="btn-placeholder"
-		[class.open]="isOpen"
-		(click)="toggle()"
-	></div>
-	<div class="dropdown-content">
+<div class="combobox" [class.open]="isOpen">
+	<div class="combobox-label" (click)="toggle()">
+		<span>Manage columns</span>
+	</div>
+	<div class="combobox-backdrop" (click)="toggle()"></div>
+	<div class="dropdown-container">
 		<div [@openClose]="isOpen ? 'open' : 'closed'" class="open-close-container">
-			<div class="list-items">
-			<ul style="pointer-events: none;">
-				<li *ngFor="let n of items">
-					<app-node-item [nodeItem]="n"></app-node-item>
-				</li>
-			</ul>
-		</div>
-			<div class="bottom-panel">
-				<div class="">
-						<span>Select all</span>
-				</div>
+			<div class="combobox-list-items">
+				<app-node-item *ngFor="let n of items" [nodeItem]="n"></app-node-item>
+			</div>
+			<div class="combobox-bottom-panel">
+				<div class="bottom-panel-content" (click)="onToggleSelectAll()"><span>Select all</span></div>
 			</div>
 		</div>
 	</div>

@@ -15,5 +15,8 @@ export class NodeItemComponent implements OnInit {
   ngOnInit() {
 
   }
-
+  onClick(){
+	  console.log("click")
+	  this.nodeItem.toggle();
+  }
 }
