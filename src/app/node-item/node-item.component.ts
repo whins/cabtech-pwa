@@ -1,22 +1,26 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NodeItemModel } from './node-item-model';
+import { Component, OnInit, Input, OnChanges } from "@angular/core";
+import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
+import { NodeItemModel } from "./node-item-model";
 
 @Component({
-  selector: 'app-node-item',
-  templateUrl: './node-item.component.html',
-  styleUrls: ['./node-item.component.scss']
+	selector: "app-node-item",
+	templateUrl: "./node-item.component.html",
+	styleUrls: ["./node-item.component.scss"]
 })
-export class NodeItemComponent implements OnInit {
-
+export class NodeItemComponent implements OnInit, OnChanges {
 	@Input() nodeItem: NodeItemModel;
+	@Input() parentItem?: NodeItemModel | null;
 
-  constructor() { }
+	constructor() {}
 
-  ngOnInit() {
+	ngOnInit() {}
+	ngOnChanges(a) {}
 
-  }
-  onClick(){
-	  console.log("click")
-	  this.nodeItem.toggle();
-  }
+	drop(event: CdkDragDrop<NodeItemModel[]>) {
+		moveItemInArray(this.nodeItem.items, event.previousIndex, event.currentIndex);
+	}
+
+	onClick(s: any) {
+		this.nodeItem.toggle();
+	}
 }

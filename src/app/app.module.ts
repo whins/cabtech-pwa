@@ -17,6 +17,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { NodeItemsListComponent } from './node-items-list/node-items-list.component';
 import { NodeItemComponent } from './node-item/node-item.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
 	declarations: [
@@ -30,6 +31,7 @@ import { NodeItemComponent } from './node-item/node-item.component';
 		AppRoutingModule,
 		MatToolbarModule,
 		FormsModule,
+		DragDropModule,
 
 		AccountsModule,
 		ContactsModule,

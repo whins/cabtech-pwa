@@ -1,12 +1,15 @@
 export class NodeItemModel {
-	id: any = new Date().valueOf();
-	name: string = `${new Date().valueOf()}`;
-	value: any = new Date().valueOf();
+	id: any;
+	name: string = ``;
+	value: any;
 	items: NodeItemModel[] = [];
 	checked: boolean = false;
 	enabled: boolean = true;
 
 	constructor(items: NodeItemModel[] = []){
+		let r = Math.random() * 10000000000000000;
+		this.id = this.value = r;
+		this.name = `${r}`;
 		this.items = items;
 	}
 

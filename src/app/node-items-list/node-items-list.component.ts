@@ -47,7 +47,7 @@ import { trigger, state, style, transition, animate } from "@angular/animations"
 })
 export class NodeItemsListComponent implements OnInit {
 	isSelectAll: boolean = false;
-	isOpen = false;
+	isOpen = true;
 	items: NodeItemModel[] = [];
 
 	@Input() dataSource: NodeItemModel[] = [];

@@ -1,23 +1,25 @@
-<div class="node-element" [class.checked]="nodeItem.checked">
+<div class="node-element">
 	<div class="display-elements">
-		<div class="check-box">
-			<label (click)="onClick()">
-					<!-- <i class="material-icons">
-							check
-							</i> -->
-				<input type="checkbox"/>
-			</label>
+		<div
+			class="check-box"
+			[class.checked]="nodeItem.checked"
+			(click)="onClick($event)"
+		>
+			<i class="material-icons"> check </i>
 		</div>
 		<div class="title-block">
-				<span>{{ nodeItem.name }}</span>
+			<span>{{ nodeItem.name }}</span>
 		</div>
-		<div class="dragger">
-				<!-- <i class="material-icons">
-						drag_indicator
-						</i> -->
-		</div>
+		<div class="dragger"><i class="material-icons"> drag_indicator </i></div>
 	</div>
-	<div class="subitems" style="padding-left: 20px;">
-			<app-node-item *ngFor="let n of nodeItem.items" [nodeItem]="n"></app-node-item>
+	<div class="subitems-list" cdkDropList (cdkDropListDropped)="drop($event)">
+		<div class="sub-item">
+			<app-node-item
+				cdkDrag
+				*ngFor="let n of nodeItem.items"
+				[nodeItem]="n"
+				[parentItem]="nodeItem"
+			></app-node-item>
+		</div>
 	</div>
 </div>
