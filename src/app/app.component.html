@@ -2,7 +2,7 @@
   {{ title }}
 </mat-toolbar>
 
-<app-node-items-list>\zx\zx\</app-node-items-list>
+<app-node-items-list [dataSource]="listItems" [onAdd]="onAdd" [onSelectedAll]="onSelectAll"></app-node-items-list>
 
 <app-accounts></app-accounts>
 <app-messages></app-messages>

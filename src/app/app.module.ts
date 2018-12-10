@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatToolbarModule, MatSnackBar, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material';
+import { MatToolbarModule, MatSnackBar, MAT_SNACK_BAR_DEFAULT_OPTIONS, MatCheckboxModule, MatIconModule, MatButtonModule } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AccountsModule } from './accounts/accounts.module';
@@ -30,8 +30,11 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 		BrowserModule,
 		AppRoutingModule,
 		MatToolbarModule,
+		MatCheckboxModule,
 		FormsModule,
 		DragDropModule,
+		MatIconModule,
+		MatButtonModule,
 
 		AccountsModule,
 		ContactsModule,

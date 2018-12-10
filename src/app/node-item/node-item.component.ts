@@ -8,7 +8,7 @@ import { NodeItemModel } from "./node-item-model";
 	styleUrls: ["./node-item.component.scss"]
 })
 export class NodeItemComponent implements OnInit, OnChanges {
-	@Input() nodeItem: NodeItemModel;
+	@Input() item: NodeItemModel;
 	@Input() parentItem?: NodeItemModel | null;
 
 	constructor() {}
@@ -17,10 +17,13 @@ export class NodeItemComponent implements OnInit, OnChanges {
 	ngOnChanges(a) {}
 
 	drop(event: CdkDragDrop<NodeItemModel[]>) {
-		moveItemInArray(this.nodeItem.items, event.previousIndex, event.currentIndex);
+		moveItemInArray(this.item.items, event.previousIndex, event.currentIndex);
 	}
 
 	onClick(s: any) {
-		this.nodeItem.toggle();
+		this.item.toggle();
+	}
+	onToggleExpand(){
+		this.item.toggleExpand();
 	}
 }

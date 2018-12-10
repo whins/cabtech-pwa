@@ -5,11 +5,24 @@
 	<div class="combobox-backdrop" (click)="toggle()"></div>
 	<div class="dropdown-container">
 		<div [@openClose]="isOpen ? 'open' : 'closed'" class="open-close-container">
-			<div class="combobox-list-items">
-				<app-node-item *ngFor="let n of items" [nodeItem]="n"></app-node-item>
+			<div
+				class="combobox-list-items dragable-items-list"
+				cdkDropList
+				(cdkDropListDropped)="drop($event)"
+			>
+				<div class="dragable-item" cdkDrag *ngFor="let n of items">
+					<app-node-item [item]="n"></app-node-item>
+				</div>
 			</div>
 			<div class="combobox-bottom-panel">
-				<div class="bottom-panel-content" (click)="onToggleSelectAll()"><span>Select all</span></div>
+				<div class="bottom-panel-content">
+						<button mat-flat-button (click)="onToggleSelectAll()">
+							<span>{{ isSelectAll ? "Unselect all" : "Select all" }}</span>
+						</button>
+						<button mat-flat-button (click)="add()">
+							<span>Add</span>
+						</button>
+				</div>
 			</div>
 		</div>
 	</div>

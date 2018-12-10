@@ -1,25 +1,38 @@
 <div class="node-element">
 	<div class="display-elements">
+		<button mat-icon-button [style.visibility]="!!item.items.length ? 'visible' : 'hidden'" (click)="onToggleExpand()">
+			<mat-icon class="mat-icon-rtl-mirror">
+				{{ item.isExpanded ? "chevron_right" : "expand_more" }}
+			</mat-icon>
+		</button>
+
+		<!-- <mat-checkbox [(ngModel)]="item.checked" [(indeterminate)]="nodeItem.disabled"></mat-checkbox> -->
+
 		<div
 			class="check-box"
-			[class.checked]="nodeItem.checked"
+			[class.checked]="item.checked"
 			(click)="onClick($event)"
 		>
 			<i class="material-icons"> check </i>
 		</div>
+
 		<div class="title-block">
-			<span>{{ nodeItem.name }}</span>
+			<span>{{ item.name }}</span>
 		</div>
-		<div class="dragger"><i class="material-icons"> drag_indicator </i></div>
+
+		<button mat-icon-button>
+				<mat-icon class="mat-icon-rtl-mirror"> drag_indicator	</mat-icon>
+		</button>
+
 	</div>
-	<div class="subitems-list" cdkDropList (cdkDropListDropped)="drop($event)">
-		<div class="sub-item">
-			<app-node-item
-				cdkDrag
-				*ngFor="let n of nodeItem.items"
-				[nodeItem]="n"
-				[parentItem]="nodeItem"
-			></app-node-item>
+	<div
+		class="subitems-list dragable-items-list"
+		cdkDropList
+		(cdkDropListDropped)="drop($event)"
+		[hidden]="item.isExpanded"
+	>
+		<div class="dragable-item" cdkDrag *ngFor="let n of item.items">
+			<app-node-item [item]="n" [parentItem]="item"></app-node-item>
 		</div>
 	</div>
 </div>

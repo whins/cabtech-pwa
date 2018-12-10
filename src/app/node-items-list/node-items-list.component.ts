@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from "@angular/core";
 import { NodeItemModel } from "../node-item/node-item-model";
 import { trigger, state, style, transition, animate } from "@angular/animations";
+import { CdkDragDrop, moveItemInArray } from "@angular/cdk/drag-drop";
 
 @Component({
 	selector: "app-node-items-list",
@@ -10,7 +11,7 @@ import { trigger, state, style, transition, animate } from "@angular/animations"
 		trigger('openClose', [
 		  // ...
 		  state('open', style({
-			height: '350px',
+			height: '400px',
 			opacity: 1,
 			display: 'flex',
 		  })),
@@ -53,38 +54,12 @@ export class NodeItemsListComponent implements OnInit {
 	@Input() dataSource: NodeItemModel[] = [];
 
 	@Input() onSelectedAll: () => {};
+	@Input() onAdd: (items: NodeItemModel[]) => any = (s:any)=>{};
 
 	constructor() {}
 
 	ngOnInit() {
-		this.items = [
-			new NodeItemModel([
-				new NodeItemModel([
-					new NodeItemModel([
-						new NodeItemModel(),
-						new NodeItemModel()
-					]),
-					new NodeItemModel(),
-					new NodeItemModel(),
-					new NodeItemModel()
-				]),
-				new NodeItemModel([new NodeItemModel(), new NodeItemModel()])
-			]),
-			new NodeItemModel([
-				new NodeItemModel(),
-				new NodeItemModel([new NodeItemModel(), new NodeItemModel()])
-			]),
-			new NodeItemModel([
-				new NodeItemModel([
-					new NodeItemModel([
-						new NodeItemModel(),
-						new NodeItemModel()
-					]),
-					new NodeItemModel()
-				]),
-				new NodeItemModel()
-			])
-		];
+		this.items = this.dataSource;
 	}
 
 	toggle() {
@@ -94,5 +69,14 @@ export class NodeItemsListComponent implements OnInit {
 	onToggleSelectAll(val: boolean){
 		this.isSelectAll = !this.isSelectAll;
 		this.items.forEach(i=>i.check(this.isSelectAll));
+		this.onSelectedAll();
+	}
+
+	drop(event: CdkDragDrop<NodeItemModel[]>) {
+		moveItemInArray(this.items, event.previousIndex, event.currentIndex);
+	}
+
+	add(){
+		this.onAdd(this.items);
 	}
 }

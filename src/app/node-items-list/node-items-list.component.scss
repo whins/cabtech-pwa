@@ -6,9 +6,8 @@
 
 		color: rgb(33, 168, 209);
 		font-size: 20px;
-		font-family: 'Lato', sans-serif;
+		font-family: "Lato", sans-serif;
 		margin: 10px;
-
 	}
 	.combobox-backdrop {
 		top: 0;
@@ -35,26 +34,49 @@
 			top: 0;
 			display: flex;
 			flex-flow: column;
-			box-shadow: 3px  0px  10px rgba(0, 0, 0, 0.226);
+			box-shadow: 3px 0px 10px rgba(0, 0, 0, 0.226);
+			user-select: none;
 			.combobox-list-items {
 				flex: 1 1;
 				overflow: auto;
 				padding: 10px;
 			}
 			.combobox-bottom-panel {
-				flex: 0 1 36px;
+				flex: 0 1 auto;
 				display: flex;
 				align-items: center;
 				.bottom-panel-content {
 					display: inline-block;
-					margin: 10px auto;
-					cursor: pointer;
-
-					color: rgb(33, 168, 209);
-					font-size: 18px;
-					font-family: 'Lato', sans-serif;
+					margin: 5px auto;
+					// cursor: pointer;
+					button[mat-flat-button] {
+						color: rgb(33, 168, 209);
+						font-size: 18px;
+						font-family: "Lato", sans-serif;
+					}
 				}
 			}
 		}
+	}
+}
+
+.cdk-drag-preview {
+	background-color: #fff;
+	box-sizing: border-box;
+	border-radius: 4px;
+	box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+		0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-animating {
+	transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+.cdk-drag-placeholder {
+	opacity: 0;
+}
+
+.subitems-list.cdk-drop-list-dragging {
+	.sub-item:not(.cdk-drag-placeholder) {
+		transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 	}
 }
